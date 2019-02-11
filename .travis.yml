@@ -2,7 +2,11 @@
 
 language: python
 python:
+<<<<<<< HEAD
   - "3.7"
+=======
+	- "3.7"
+>>>>>>> baea9c388c49011341dd079d1310d44d38d5b6dd
 
 install:
   - pip install -r requirements/local.txt
