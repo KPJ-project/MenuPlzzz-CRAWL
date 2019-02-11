@@ -1,5 +1,7 @@
 # Created by https://www.gitignore.io
 
+dbsetting.py
+
 ### OSX ###
 .DS_Store
 .AppleDouble

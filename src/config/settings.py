@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 
+from .dbsetting import dbsetting
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crawl',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +78,16 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': dbsetting["NAME"],  # DB명
+        'USER': dbsetting["USER"],  # 데이터베이스 계정
+        'PASSWORD': dbsetting["PASSWORD"],  # 계정 비밀번호
+        # 데이테베이스 주소(IP)
+        'HOST': dbsetting["HOST"],
+        'PORT': dbsetting["PORT"],  # 데이터베이스 포트(보통은 3306)
+        # 'OPTIONS': {
+        #     'read_default_file': "./mysql.cnf"
+        # }
     }
 }
 
