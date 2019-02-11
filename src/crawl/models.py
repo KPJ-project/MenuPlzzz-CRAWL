@@ -12,10 +12,10 @@ class TimeStampedModel(models.Model):
     class Meta:
         abstract = True
 
-class StoreType(models.Model):
+class StoreType(TimeStampedModel):
     name = models.CharField(("가게 타입"), max_length=100)
 
-class Store(models.Model):
+class Store(TimeStampedModel):
     name = models.CharField(("가게 이름"), max_length=100)
     storetype = models.ForeignKey(StoreType, verbose_name=("가게 종류"), on_delete=models.CASCADE)
 
@@ -25,7 +25,7 @@ class Category(TimeStampedModel):
     store = models.ForeignKey(Store, verbose_name=("가게 id"), on_delete=models.CASCADE)
 
 
-class Menu(models.Model):
+class Menu(TimeStampedModel):
     name = models.CharField(("메뉴 이름"), max_length=100)
     is_event = models.BooleanField(("행사 중인가?"), default=False)
     price = models.CharField(("가격"), max_length=50, default="")
