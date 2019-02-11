@@ -10,6 +10,8 @@ django = "*"
 requests = "*"
 bs4 = "*"
 mysqlclient = "*"
+pytest-cov = "*"
+pytest-xdist = "*"
 
 [requires]
 python_version = "3.7"
