@@ -8,4 +8,4 @@ install:
 	- pip install -r requirements/local.txt
 
 script:
-    - python src/manage.py test
+	- python src/manage.py test
