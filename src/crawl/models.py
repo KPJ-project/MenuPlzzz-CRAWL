@@ -15,14 +15,23 @@ class TimeStampedModel(models.Model):
 class StoreType(TimeStampedModel):
     name = models.CharField(("가게 타입"), max_length=100)
 
+    def __str__(self):
+        return str(self.name)
+
 class Store(TimeStampedModel):
     name = models.CharField(("가게 이름"), max_length=100)
     storetype = models.ForeignKey(StoreType, verbose_name=("가게 종류"), on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.name)+ " - " + str(self.storetype.name)
 
 
 class Category(TimeStampedModel):
     name = name = models.CharField(("메뉴 카테고리"), max_length=100)
     store = models.ForeignKey(Store, verbose_name=("가게 id"), on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.name)+ " - " + str(self.store.name)
 
 
 class Menu(TimeStampedModel):
@@ -34,6 +43,9 @@ class Menu(TimeStampedModel):
     is_selling = models.BooleanField(("아직 파는 중인가?"), default=True)
     category = models.ForeignKey(Category, verbose_name=("카테고리 id"), on_delete=models.CASCADE)
     store = models.ForeignKey(Store, verbose_name=("가게 id"), on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.name) + " - " + str(self.price)
 
 
 

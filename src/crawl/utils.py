@@ -30,6 +30,7 @@ def macdonald(page):
     for information in informations:
         temp_dict = {}
         menu = literal_eval(information)
+        temp_dict['store'] = "맥도날드"
         temp_dict['name'] = menu['name']
         temp_dict['price'] = menu['price'][2:]
         temp_dict['category'] = menu['cat']
