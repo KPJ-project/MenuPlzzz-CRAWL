@@ -17,7 +17,6 @@ class TimeStampedModel(models.Model):
 class StoreType(TimeStampedModel):
     name = models.CharField(("가게 타입"), max_length=100)
 
-
     def __str__(self):
         return str(self.name)
 
@@ -27,18 +26,19 @@ class Store(TimeStampedModel):
     image = models.CharField(("이미지"), max_length=200, null=True, blank=True)
     storetype = models.ForeignKey(
         StoreType, verbose_name=("가게 종류"), on_delete=models.CASCADE)
+    site_url = models.CharField(("사이트 URL"), max_length=200, null=True)
 
     def __str__(self):
-        return str(self.name)+ " - " + str(self.storetype.name)
+        return str(self.name) + " - " + str(self.storetype.name)
 
 
 class Category(TimeStampedModel):
-    name = name = models.CharField(("메뉴 카테고리"), max_length=100)
+    name = models.CharField(("메뉴 카테고리"), max_length=100)
     store = models.ForeignKey(Store, verbose_name=(
         "가게 id"), on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.name)+ " - " + str(self.store.name)
+        return str(self.name) + " - " + str(self.store.name)
 
 
 class Menu(TimeStampedModel):
@@ -48,12 +48,10 @@ class Menu(TimeStampedModel):
     event_price = models.CharField(("행사 가격"), max_length=50, default="")
     image = models.CharField(("상품 이미지"), max_length=100)
     is_selling = models.BooleanField(("아직 파는 중인가?"), default=True)
-    category = models.ForeignKey(Category, verbose_name=("카테고리 id"), on_delete=models.CASCADE)
-    store = models.ForeignKey(Store, verbose_name=("가게 id"), on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, verbose_name=(
+        "카테고리 id"), on_delete=models.CASCADE)
+    store = models.ForeignKey(Store, verbose_name=(
+        "가게 id"), on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.name) + " - " + str(self.price)
-
-
-
-
